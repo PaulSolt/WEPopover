@@ -10,7 +10,6 @@
 #import "WEPopoverController.h"
 
 @interface WEPopoverTableViewController : UITableViewController<PopoverControllerDelegate> {
-	WEPopoverController *popoverController;
 	NSInteger currentPopoverCellIndex;
     
     WEPopoverController *navPopover;
@@ -20,6 +19,6 @@
 - (void)add:(id)sender;
 - (void)bookmarks:(id)sender;
 
-@property (nonatomic, retain) WEPopoverController *popoverController;
+@property (nonatomic, strong) WEPopoverController *popoverController;
 
 @end

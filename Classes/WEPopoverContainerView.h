@@ -23,11 +23,11 @@
 	NSInteger leftBgCapSize;
 }
 
-@property(nonatomic, retain) NSString *bgImageName;
-@property(nonatomic, retain) NSString *upArrowImageName;
-@property(nonatomic, retain) NSString *downArrowImageName;
-@property(nonatomic, retain) NSString *leftArrowImageName;
-@property(nonatomic, retain) NSString *rightArrowImageName;
+@property(nonatomic) NSString *bgImageName;
+@property(nonatomic) NSString *upArrowImageName;
+@property(nonatomic) NSString *downArrowImageName;
+@property(nonatomic) NSString *leftArrowImageName;
+@property(nonatomic) NSString *rightArrowImageName;
 @property(nonatomic, assign) CGFloat leftBgMargin;
 @property(nonatomic, assign) CGFloat rightBgMargin;
 @property(nonatomic, assign) CGFloat topBgMargin;
@@ -60,7 +60,7 @@
 }
 
 @property (nonatomic, readonly) UIPopoverArrowDirection arrowDirection;
-@property (nonatomic, retain) UIView *contentView;
+@property (nonatomic) UIView *contentView;
 
 - (id)initWithSize:(CGSize)theSize 
 		anchorRect:(CGRect)anchorRect 

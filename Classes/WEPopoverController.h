@@ -20,11 +20,11 @@
 
 @interface WEPopoverController : NSObject {
 	UIViewController *contentViewController;
-	UIView *view;
+	UIView *__weak view;
 	
 	BOOL popoverVisible;
 	UIPopoverArrowDirection popoverArrowDirection;
-	id <PopoverControllerDelegate> delegate;
+	id <PopoverControllerDelegate> __unsafe_unretained delegate;
 	CGSize popoverContentSize;
 	WEPopoverContainerViewProperties *containerViewProperties;
 	id <NSObject> context;
@@ -33,15 +33,15 @@
     UIView *parentView;
 }
 
-@property(nonatomic, retain) UIViewController *contentViewController;
+@property(nonatomic) UIViewController *contentViewController;
 
-@property (nonatomic, readonly) UIView *view;
+@property (weak, nonatomic, readonly) UIView *view;
 @property (nonatomic, readonly, getter=isPopoverVisible) BOOL popoverVisible;
 @property (nonatomic, readonly) UIPopoverArrowDirection popoverArrowDirection;
-@property (nonatomic, assign) id <PopoverControllerDelegate> delegate;
+@property (nonatomic, unsafe_unretained) id <PopoverControllerDelegate> delegate;
 @property (nonatomic, assign) CGSize popoverContentSize;
-@property (nonatomic, retain) WEPopoverContainerViewProperties *containerViewProperties;
-@property (nonatomic, retain) id <NSObject> context;
+@property (nonatomic) WEPopoverContainerViewProperties *containerViewProperties;
+@property (nonatomic) id <NSObject> context;
 
 - (id)initWithContentViewController:(UIViewController *)theContentViewController;
 

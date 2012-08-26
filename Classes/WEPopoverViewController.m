@@ -12,7 +12,8 @@
 
 @implementation WEPopoverViewController
 
-@synthesize popoverController;
+@synthesize popoverController = _myPopoverController;
+// Note: _popoverController is an iVar defined by UIViewController, so can't use that
 
 /*
 // The designated initializer. Override to perform setup that is required before the view is loaded.
@@ -70,19 +71,17 @@
 	} else {
 		UIViewController *contentViewController = [[WEPopoverContentViewController alloc] initWithStyle:UITableViewStylePlain];
 		
-		self.popoverController = [[[WEPopoverController alloc] initWithContentViewController:contentViewController] autorelease];
+		self.popoverController = [[WEPopoverController alloc] initWithContentViewController:contentViewController];
 		[self.popoverController presentPopoverFromRect:button.frame 
 												inView:self.view 
 							  permittedArrowDirections:UIPopoverArrowDirectionDown
 											  animated:YES];
-		[contentViewController release];
 		[button setTitle:@"Hide Popover" forState:UIControlStateNormal];
 	}
 }
 
 - (void)dealloc {
 	[self viewDidUnload];
-    [super dealloc];
 }
 
 @end

@@ -11,16 +11,12 @@
 //@class WEPopoverViewController;
 @class WEPopoverTableViewController;
 
-@interface WEPopoverAppDelegate : NSObject <UIApplicationDelegate> {
-    UIWindow *window;
-//    WEPopoverViewController *viewController;
-	WEPopoverTableViewController *viewController;
-}
+@interface WEPopoverAppDelegate : NSObject <UIApplicationDelegate> 
 
-@property (nonatomic, retain) IBOutlet UIWindow *window;
-//@property (nonatomic, retain) IBOutlet WEPopoverViewController *viewController;
-@property (nonatomic, retain) IBOutlet WEPopoverTableViewController *viewController;
+@property (nonatomic, strong) IBOutlet UIWindow *window;
+@property (nonatomic, strong) IBOutlet WEPopoverTableViewController *viewController;
 
+@property (nonatomic, strong) UINavigationController* nav;
 
 @end
 

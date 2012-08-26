@@ -11,7 +11,8 @@
 
 @implementation WEPopoverTableViewController
 
-@synthesize popoverController;
+@synthesize popoverController = _myPopoverController;
+// Note: _popoverController is an iVar defined by UIViewController, so can't use that
 
 #pragma mark -
 #pragma mark Initialization
@@ -46,8 +47,6 @@
 	self.navigationItem.leftBarButtonItem = leftButton;
 	self.navigationItem.rightBarButtonItem = rightButton;
 	
-	[leftButton release];
-	[rightButton release];
 }
 
 - (void)popoverButtonPressed:(id)sender {
@@ -94,7 +93,6 @@
     if([navPopover isPopoverVisible]) {
         [navPopover dismissPopoverAnimated:YES];
         [navPopover setDelegate:nil];
-        [navPopover autorelease];
         navPopover = nil;
     } else {
         [navPopover presentPopoverFromRect:CGRectMake(0, 0, 50, 57)
@@ -146,7 +144,6 @@
     if([navPopover isPopoverVisible]) {
         [navPopover dismissPopoverAnimated:YES];
         [navPopover setDelegate:nil];
-        [navPopover autorelease];
         navPopover = nil;
     } else {
         CGRect screenBounds = [UIScreen mainScreen].bounds;
@@ -230,7 +227,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
 	
 	cell.textLabel.text = [NSString stringWithFormat:@"Cell %d", indexPath.row];
@@ -296,7 +293,7 @@
 		UIViewController *contentViewController = [[WEPopoverContentViewController alloc] initWithStyle:UITableViewStylePlain];
 		CGRect frame = [tableView cellForRowAtIndexPath:indexPath].frame;
 		
-		self.popoverController = [[[WEPopoverController alloc] initWithContentViewController:contentViewController] autorelease];
+		self.popoverController = [[WEPopoverController alloc] initWithContentViewController:contentViewController];
 		[self.popoverController presentPopoverFromRect:frame 
 												inView:self.view 
 							  permittedArrowDirections:UIPopoverArrowDirectionDown|UIPopoverArrowDirectionUp
@@ -304,7 +301,6 @@
 		
 		currentPopoverCellIndex = indexPath.row;
 		
-		[contentViewController release];
 	}
 	
 }
@@ -320,9 +316,6 @@
     // Relinquish ownership any cached data, images, etc. that aren't in use.
 }
 
-- (void)dealloc {
-    [super dealloc];
-}
 
 
 @end

@@ -40,26 +40,20 @@
 
 - (void)dealloc {
 	[self dismissPopoverAnimated:NO];
-	[contentViewController release];
-	[containerViewProperties release];
-	self.context = nil;
     
     
     if(parentView) {
         [parentView removeGestureRecognizer:tapGesture];
     }
-    [tapGesture release];
     tapGesture = nil;
     parentView = nil;
     
     
-	[super dealloc];
 }
 
 - (void)setContentViewController:(UIViewController *)vc {
 	if (vc != contentViewController) {
-		[contentViewController release];
-		contentViewController = [vc retain];
+		contentViewController = vc;
 		popoverContentSize = [vc contentSizeForViewInPopover];
 	}
 }
@@ -88,7 +82,6 @@
 		
         if(tapGesture) {
             [parentView removeGestureRecognizer:tapGesture];
-            [tapGesture autorelease];
             tapGesture = nil;
         }
             
@@ -127,7 +120,6 @@
                 [self dismissPopoverAnimated:YES];
                 
                 [parentView removeGestureRecognizer:tapGesture];
-                [tapGesture autorelease];
                 tapGesture = nil;
             }
         } 
@@ -145,7 +137,7 @@
 	CGRect displayArea = [self displayAreaForView:theView];
 	
 	WEPopoverContainerViewProperties *props = self.containerViewProperties ? self.containerViewProperties : [self defaultContainerViewProperties];
-	WEPopoverContainerView *containerView = [[[WEPopoverContainerView alloc] initWithSize:self.popoverContentSize anchorRect:rect displayArea:displayArea permittedArrowDirections:arrowDirections properties:props] autorelease];
+	WEPopoverContainerView *containerView = [[WEPopoverContainerView alloc] initWithSize:self.popoverContentSize anchorRect:rect displayArea:displayArea permittedArrowDirections:arrowDirections properties:props];
 	popoverArrowDirection = containerView.arrowDirection;
 	[theView addSubview:containerView];
 
@@ -198,8 +190,7 @@
 
 - (void)setView:(UIView *)v {
 	if (view != v) {
-		[view release];
-		view = [v retain];
+		view = v;
 	}
 }
 
@@ -217,7 +208,7 @@
 }
 
 - (WEPopoverContainerViewProperties *)defaultContainerViewProperties {
-	WEPopoverContainerViewProperties *ret = [[WEPopoverContainerViewProperties alloc] autorelease];
+	WEPopoverContainerViewProperties *ret = [WEPopoverContainerViewProperties alloc];
 	
 	CGSize theSize = self.popoverContentSize;
 	
