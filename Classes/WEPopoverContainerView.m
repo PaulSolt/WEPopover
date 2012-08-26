@@ -42,7 +42,7 @@ permittedArrowDirections:(UIPopoverArrowDirection)permittedArrowDirections
 								   theSize.height + properties.topBgMargin + properties.bottomBgMargin + properties.topContentMargin + properties.bottomContentMargin);	
 		[self determineGeometryForSize:correctedSize anchorRect:anchorRect displayArea:displayArea permittedArrowDirections:permittedArrowDirections];
 		
-		CGRect theFrame = CGRectOffset(CGRectUnion(bgRect, arrowRect), offset.x, offset.y);
+		CGRect theFrame = CGRectOffset(CGRectUnion(bgRect, arrowRect), (int) offset.x, (int) offset.y);
 		self.frame = theFrame;
 		
 		self.backgroundColor = [UIColor clearColor];
@@ -65,7 +65,7 @@ permittedArrowDirections:(UIPopoverArrowDirection)permittedArrowDirections
 						 displayArea:(CGRect)displayArea
 			permittedArrowDirections:(UIPopoverArrowDirection)permittedArrowDirections {
 	[self determineGeometryForSize:correctedSize anchorRect:anchorRect displayArea:displayArea permittedArrowDirections:permittedArrowDirections];
-	CGRect theFrame = CGRectOffset(CGRectUnion(bgRect, arrowRect), offset.x, offset.y);
+	CGRect theFrame = CGRectOffset(CGRectUnion(bgRect, arrowRect), (int) offset.x, (int) offset.y);
 	self.frame = theFrame;
 }
 
